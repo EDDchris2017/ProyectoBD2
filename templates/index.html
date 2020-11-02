@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Proyecto Base de Datos 2 </title>
+    </head>
+    <body>
+        <h1>Proyecto Base de Datos 2</h1>
+        <h2> Tabla Ranking Bancario </h2>
+        <table>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th> 
+              <th>Genero</th>
+              <th>Plataforma</th>
+            </tr>
+            {% for r in result %}
+            <tr>
+              <td>{{ r[0] }}</td>
+              <td>{{ r[1] }}</td> 
+              <td>{{ r[2] }}</td>
+              <td>{{ r[3] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <br>
+        <h1>Grafica Polinomial Ranking Bancario</h1>
+    </body>
+</html>
