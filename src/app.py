@@ -76,17 +76,11 @@ def dataStruct():
 def verificar():
     return "Servicio Proyecto BD2 activo"
 
-@app.route('/')
+@app.route('/datos')
 def servicio():
-
-    #res = conexionBD
-    #(
-    #    "SELECT YEAR(s.fecha) AS ano, MONTH(s.fecha) AS mes, b.nombre_banco, SUM(saldo) AS saldo, RANK() OVER (PARTITION BY YEAR(s.fecha), MONTH(s.fecha) ORDER BY SUM(saldo) DESC) ranker"
-    #    +"FROM banco b"
-    #    +"JOIN saldo s"
-    #    + "ON b.id_banco = s.id_banco"
-    #    + "WHERE s.tipo = 'A'"
-    #    + "GROUP BY YEAR(s.fecha), MONTH(s.fecha), b.nombre_banco"
-    #)
     datos = dataStruct()
     return render_template("principal.html", columnas=datos["fechas"],rows=datos["bancos"],columnas_plot=json.dumps(datos["fechas"]),rows_plot=json.dumps(datos["bancos"]))
+
+@app.route('/')
+def principal():
+    return render_template("login.html")
