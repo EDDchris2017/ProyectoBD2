@@ -19,8 +19,11 @@
                 mode: 'lines+markers',
                 type: 'scatter'
             }
+            data.push(nuevo_trace)
         } 
+        Plotly.newPlot('myDiv', data);
 
+        
         var datos_bd = {{ res_1 }}
         console.log(datos_bd)
         var trace1 = {

@@ -45,15 +45,20 @@
         <!-- Plotly chart will be drawn inside this DIV -->
     </div>
     <script>
-        let eje_x ={{ columnas }}
-        let filas = {{ rows }}
+        let datax = "{{ columnas }}"
+        let datay = "{{rows}}"
+        let eje_x = JSON.parse(datax.replace(/&#39;/g,'"'));
+        let filas = JSON.parse(datay.replace(/&#39;/g,'"'));
+        console.log(filas)
         let data = []
         for (let x = 0; x < filas.length; x++) {
-            console.log(filas[x])
+            let nombre_banco = filas[x]
+            nombre_banco = nombre_banco[0]
             let nuevo_trace = {
-                x: ["cad1", "cad2"],
-                y: [1+x,2+x],
+                x: eje_x,
+                y: filas[x],
                 mode: 'lines+markers',
+                name: nombre_banco,
                 type: 'scatter'
             }
             data.push(nuevo_trace)

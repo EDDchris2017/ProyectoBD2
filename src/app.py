@@ -2,6 +2,7 @@ from flask import Flask, render_template
 import mysql.connector
 from mysql.connector import Error
 import pymysql.cursors
+import json
 # https://plotly.com/javascript/figure-labels/
 #Se leventa en puerto 5000 !!!
 app = Flask(__name__)
@@ -88,4 +89,4 @@ def servicio():
     #    + "GROUP BY YEAR(s.fecha), MONTH(s.fecha), b.nombre_banco"
     #)
     datos = dataStruct()
-    return render_template("principal.html", columnas=datos["fechas"],rows=datos["bancos"])
+    return render_template("principal.html", columnas=datos["fechas"],rows=datos["bancos"],columnas_plot=json.dumps(datos["fechas"]),rows_plot=json.dumps(datos["bancos"]))
