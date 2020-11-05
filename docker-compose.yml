@@ -1,8 +1,10 @@
 version: "3.8"
 services:
   web:
-    build: ./src
+    build: ./
     ports:
       - "5000:5000"
- #   links:
-  #    - 'mysql'
+    volumes:
+      - type: bind
+        source: ./src
+        target: /code

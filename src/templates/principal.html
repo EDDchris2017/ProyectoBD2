@@ -1,31 +1,65 @@
 <!------------------------ PAGINA OFICIAL PROYECTO BASE DE DATOS 2 --------------------------->
 <html>
-    <head>
-        <title>Proyecto Base de Datos 2 </title>
-    </head>
-    <body>
-        <h1>Proyecto Base de Datos 2</h1>
-        <h2> Tabla Ranking Bancario </h2>
-        <table>
+
+<head>
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <title>Proyecto Base de Datos 2 </title>
+</head>
+
+<body>
+    <h1>Proyecto Base de Datos 2</h1>
+    <h2> Tabla Ranking Bancario </h2>
+    <table class="table table-striped">
+        <thead>
             <tr>
-                {%  for i in range(len(columnas))%}
-                    <th>{{columnas[i]}}</th>
+                {%  for i in range(columnas|length) %}
+                <th scope="col">{{columnas[i]}}</th>
                 {% endfor %}
             </tr>
-            {% for r in rows %}
+        </thead>
+        <tbody>
+            {% for muestra in rows %}
             <tr>
-                {% for r in range(len(rows)) %}
-                    
-              <td>{{ r[0] }}</td>
-              <td>{{ r[1] }}</td> 
-              <td>{{ r[2] }}</td>
-              <td>{{ r[3] }}</td>
-              {% endfor %}
+                {% for x in muestra %}
+                <td>{{x}}</td>
+                {% endfor %}
             </tr>
             {% endfor %}
-        </table>
-        <br>
-        <br>
-        <h1>Grafica Polinomial Ranking Bancario</h1>
-    </body>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <h1>Grafica Polinomial Ranking Bancario</h1>
+    <div id='myDiv'>
+        <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    <script>
+        let eje_x ={{ columnas }}
+        let filas = {{ rows }}
+        let data = []
+        for (let x = 0; x < filas.length; x++) {
+            console.log(filas[x])
+            let nuevo_trace = {
+                x: ["cad1", "cad2"],
+                y: [1+x,2+x],
+                mode: 'lines+markers',
+                type: 'scatter'
+            }
+            data.push(nuevo_trace)
+        }
+        Plotly.newPlot('myDiv', data);
+    </script>
+</body>
+
 </html>

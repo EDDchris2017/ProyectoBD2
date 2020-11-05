@@ -9,7 +9,18 @@
         <h1>Prueba de grafica plotly</h1>
       <div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
       <script>
-        
+        let eje_x = {{columnas}}
+        let filas = {{rows}}
+        let data = []
+        for(let x = 0; x < filas.length; x++){
+            let nuevo_trace = {
+                x: eje_x,
+                y: filas[x],
+                mode: 'lines+markers',
+                type: 'scatter'
+            }
+        } 
+
         var datos_bd = {{ res_1 }}
         console.log(datos_bd)
         var trace1 = {
